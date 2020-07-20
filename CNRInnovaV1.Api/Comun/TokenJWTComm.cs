@@ -20,7 +20,6 @@ namespace CNRInnovaV1.Api.Comun
 
         public string GenerarTokenJWT(ObjTokenDTO ress)
         {
-
             string token = GenerateTokenJWT(ress);
             return token;
         }

@@ -1,4 +1,5 @@
-﻿using CNRInnovaV1.Api.Aplicacion.Servicios;
+﻿using CNRInnovaV1.Api.Aplicacion;
+using CNRInnovaV1.Api.Aplicacion.Servicios;
 using CNRInnovaV1.Api.Comun;
 using CNRInnovaV1.Api.Comun.Servicios;
 using CNRInnovaV1.Api.Dominio;
@@ -22,13 +23,17 @@ namespace CNRInnovaV1.Api.DI
         {
             #region Inyeccion de Dependencia Aplicacion
             services.AddTransient<IAuthApp, AuthApp>();
+            services.AddTransient<ICombosApp, CombosApp>();
+            services.AddTransient<IUsuarioApp, UsuarioApp>();
+
 
 
             #endregion
 
             #region Inyeccion de Dependencia Dominio
             services.AddTransient<IAuthDom, AuthDom>();
-
+            services.AddTransient<IUsuarioDom, UsuarioDom>();
+            
 
             #endregion
 
@@ -36,8 +41,7 @@ namespace CNRInnovaV1.Api.DI
 
             services.AddTransient<ITokenJWTComm, TokenJWTComm>();
             services.AddTransient<IEncryptComm, EncryptComm>();
-            services.AddTransient<IToolDataComm, ToolDataComm>();
-
+            services.AddTransient<ICombosComm, CombosComm>();
             #endregion
         }
     }

@@ -129,4 +129,7 @@
   <data name="InvalidUsser" xml:space="preserve">
     <value>Usuario no válido</value>
   </data>
+  <data name="ProcessCompleted" xml:space="preserve">
+    <value>Proceso Termino Correctamente</value>
+  </data>
 </root>

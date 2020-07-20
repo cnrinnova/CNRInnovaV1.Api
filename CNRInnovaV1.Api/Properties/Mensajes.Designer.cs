@@ -95,5 +95,14 @@ namespace CNRInnovaV1.Api.Properties {
                 return ResourceManager.GetString("InvalidUsser", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Proceso Termino Correctamente.
+        /// </summary>
+        internal static string ProcessCompleted {
+            get {
+                return ResourceManager.GetString("ProcessCompleted", resourceCulture);
+            }
+        }
     }
 }
