@@ -26,6 +26,7 @@ namespace CNRInnovaV1.Api.Controllers
         {
             _CombosApp = CombosApp;
         }
+        /*
         /// <summary>
         /// Carga Maestro de Tipos de Identificacion
         /// </summary>
@@ -59,6 +60,6 @@ namespace CNRInnovaV1.Api.Controllers
             return _CombosApp.ComboEstadoUsuario();
         }
 
-
+        */
     }
 }

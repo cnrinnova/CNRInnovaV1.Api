@@ -21,6 +21,7 @@ namespace CNRInnovaV1.Api.Controllers
     [Authorize]
     public class UsuarioController : ControllerBase
     {
+        
         private readonly IUsuarioApp _usuarioApp;
 
         public UsuarioController(IUsuarioApp usuarioApp)
@@ -28,6 +29,19 @@ namespace CNRInnovaV1.Api.Controllers
             _usuarioApp = usuarioApp;
         }
 
+        /// <summary>
+        /// Consulta el menu para un usuario
+        /// </summary>
+        /// <param name="usuarioId"></param>
+        [HttpGet]
+        [Route(nameof(UsuarioController.MenuUsuario))]
+        public ReturnResult<List<dynamic>> MenuUsuario(int usuarioId)
+        {
+            return _usuarioApp.MenuUsuario(usuarioId);
+        }
+
+
+        /*
         /// <summary>
         /// Consulta usuario por tipo y numero de identificacion
         /// </summary>
@@ -41,17 +55,7 @@ namespace CNRInnovaV1.Api.Controllers
             return _usuarioApp.ConsultarUsuarioByIdentificacion(idTipoIdentificacion, NumDoc);
         }
 
-        /// <summary>
-        /// Crea Usuario
-        /// </summary>
-        /// <param name="usu"></param>
-        /// <returns></returns>
-        [HttpPost]
-        [Route(nameof(UsuarioController.CrearUsuario))]
-        public ReturnResult<string> CrearUsuario(UsuarioDTO usu)
-        {
-            return _usuarioApp.CrearUsuario(usu);
-        }
+        
 
         /// <summary>
         /// Modificar Usuario
@@ -89,5 +93,6 @@ namespace CNRInnovaV1.Api.Controllers
             return _usuarioApp.ModificarPassword(pass);
         }
 
+        */
     }
 }

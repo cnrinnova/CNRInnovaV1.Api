@@ -27,18 +27,16 @@ namespace CNRInnovaV1.Api.Dominio
         {
             DataTable dtRetorno = new DataTable();
 
-            using (MySqlConnection con = new MySqlConnection(MiConexion))
-            {
-                using (MySqlCommand cmd = new MySqlCommand("Consultar_Usuario", con))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@usuLogin", usu);
-                    using (MySqlDataAdapter dbr = new MySqlDataAdapter(cmd))
-                    {
-                        dbr.Fill(dtRetorno);
-                    }
-                }
-            }
+            MySqlConnection conexion = new MySqlConnection(MiConexion);
+           
+            MySqlCommand command = new MySqlCommand("Consultar_Usuario", conexion);
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@usuLogin", usu);
+
+            MySqlDataAdapter dr = new MySqlDataAdapter(command);
+            conexion.Open();
+            dr.Fill(dtRetorno);
+            conexion.Close();
 
             var resp = ToolDataTable.DataTableToList<Usuario>(dtRetorno).FirstOrDefault();
 

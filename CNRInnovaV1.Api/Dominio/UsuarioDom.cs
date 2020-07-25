@@ -5,6 +5,8 @@ using CNRInnovaV1.Api.Properties;
 using Microsoft.Extensions.Configuration;
 using MySql.Data.MySqlClient;
 using ResultActions;
+using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 
@@ -44,37 +46,69 @@ namespace CNRInnovaV1.Api.Dominio
             return ReturnResult<dynamic>.CrearExistoso(resp);
         }
 
-        
-
-        public ReturnResult<bool> CrearUsuario(UsuarioDTO usu)
+        public ReturnResult<bool> CrearUsuario(UsuarioNewDTO usu)
         {
             DataTable dtRetorno = new DataTable();
 
-            using (MySqlConnection con = new MySqlConnection(MiConexion))
+            MySqlConnection conexion = new MySqlConnection(MiConexion);
+
+            MySqlCommand command = new MySqlCommand("Crear_Usuario", conexion);
+            command.CommandType = CommandType.StoredProcedure;
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@Email", usu.Usser);
+            command.Parameters.AddWithValue("@PriNombre", usu.PriNombre);
+            command.Parameters.AddWithValue("@PriApellido", usu.PriApellido);
+            command.Parameters.AddWithValue("@Pass", usu.Pass);
+
+            MySqlDataAdapter dr = new MySqlDataAdapter(command);
+            try
             {
-                using MySqlCommand cmd = new MySqlCommand("Crear_Usuario", con);
-                cmd.CommandType = CommandType.StoredProcedure;                
-                cmd.Parameters.AddWithValue("@UsuEmail", usu.UsuEmail);
-                cmd.Parameters.AddWithValue("@TipoIdentificacionId", usu.TipoIdentificacionId);
-                cmd.Parameters.AddWithValue("@NumDocumento", usu.NumDocumento);
-                cmd.Parameters.AddWithValue("@PriNombre", usu.PriNombre);
-                cmd.Parameters.AddWithValue("@SegNombre", usu.SegNombre);
-                cmd.Parameters.AddWithValue("@PriApellido", usu.PriApellido);
-                cmd.Parameters.AddWithValue("@SegApellido", usu.SegApellido);
-                cmd.Parameters.AddWithValue("@FchNacimiento", usu.FchNacimiento);
-                cmd.Parameters.AddWithValue("@Celular", usu.Celular);
-                cmd.Parameters.AddWithValue("@PerfilId", usu.PerfilId);
-                cmd.Parameters.AddWithValue("@Estado", usu.Estado);
-
-                using MySqlDataAdapter dbr = new MySqlDataAdapter(cmd);
-
-                dbr.Fill(dtRetorno);
+                conexion.Open();
+                dr.Fill(dtRetorno);
+                conexion.Close();
+            }
+            catch (Exception)
+            {
+                if(conexion.State == ConnectionState.Open)
+                    conexion.Close();
+                throw;
             }
 
             var resp = dtRetorno.ToDynamic().FirstOrDefault();
-
             return ReturnResult<bool>.CrearExistoso(true);
         }
+
+
+
+        public ReturnResult<List<dynamic>> MenuUsuario(int usuarioId)
+        {
+            DataTable dtRetorno = new DataTable();
+
+            MySqlConnection conexion = new MySqlConnection(MiConexion);
+
+            MySqlCommand command = new MySqlCommand("Consultar_Menu", conexion);
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@usuarioId", usuarioId);
+
+            MySqlDataAdapter dr = new MySqlDataAdapter(command);
+            try
+            {
+                conexion.Open();
+                dr.Fill(dtRetorno);
+                conexion.Close();
+            }
+            catch (Exception)
+            {
+                if (conexion.State == ConnectionState.Open)
+                    conexion.Close();
+                throw;
+            }
+            var resp = dtRetorno.ToDynamic();
+            return ReturnResult<List<dynamic>>.CrearExistoso(resp);
+        }
+
+
+
 
         public ReturnResult<bool> ModificarUsuario(UsuarioDTO usu)
         {

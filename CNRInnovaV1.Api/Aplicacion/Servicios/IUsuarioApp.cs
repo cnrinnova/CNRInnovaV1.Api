@@ -22,7 +22,7 @@ namespace CNRInnovaV1.Api.Aplicacion.Servicios
         /// </summary>
         /// <param name="usu"></param>
         /// <returns></returns>
-        ReturnResult<string> CrearUsuario(UsuarioDTO usu);
+        ReturnResult<string> CrearUsuario(UsuarioNewDTO usu);
 
         /// <summary>
         /// Modificar Usuario
@@ -41,5 +41,11 @@ namespace CNRInnovaV1.Api.Aplicacion.Servicios
         /// </summary>
         /// <param name="pass"></param>
         ReturnResult<string> ModificarPassword(PasswordDTO pass);
+
+        /// <summary>
+        /// Consulta el menu para un usuario
+        /// </summary>
+        /// <param name="usuarioId"></param>
+        ReturnResult<List<dynamic>> MenuUsuario(int usuarioId);
     }
 }

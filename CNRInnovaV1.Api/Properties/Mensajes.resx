@@ -120,6 +120,12 @@
   <data name="DisabledPassword" xml:space="preserve">
     <value>Contraseña Desahabilitada</value>
   </data>
+  <data name="InvalidEmail" xml:space="preserve">
+    <value>Email no valido</value>
+  </data>
+  <data name="InvalidNewUsser" xml:space="preserve">
+    <value>Usuario ya se encuentra registrado</value>
+  </data>
   <data name="InvalidPass" xml:space="preserve">
     <value>Contraseña vacia</value>
   </data>

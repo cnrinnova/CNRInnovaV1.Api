@@ -70,6 +70,24 @@ namespace CNRInnovaV1.Api.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Email no valido.
+        /// </summary>
+        internal static string InvalidEmail {
+            get {
+                return ResourceManager.GetString("InvalidEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Usuario ya se encuentra registrado.
+        /// </summary>
+        internal static string InvalidNewUsser {
+            get {
+                return ResourceManager.GetString("InvalidNewUsser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Contraseña vacia.
         /// </summary>
         internal static string InvalidPass {

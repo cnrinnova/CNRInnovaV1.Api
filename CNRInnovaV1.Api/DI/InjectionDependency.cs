@@ -42,6 +42,8 @@ namespace CNRInnovaV1.Api.DI
             services.AddTransient<ITokenJWTComm, TokenJWTComm>();
             services.AddTransient<IEncryptComm, EncryptComm>();
             services.AddTransient<ICombosComm, CombosComm>();
+            services.AddTransient<IToolValidateComm, ToolValidateComm>();
+            
             #endregion
         }
     }

@@ -17,11 +17,25 @@ namespace CNRInnovaV1.Api.Controllers
     {
        
         private readonly IAuthApp _authApp;
+        private readonly IUsuarioApp _usuarioApp;
 
 
-        public AuthController(ITokenJWTComm comunSrv, IAuthApp authApp)
+        public AuthController(ITokenJWTComm comunSrv, IAuthApp authApp, IUsuarioApp usuarioApp)
         {
             _authApp = authApp;
+            _usuarioApp = usuarioApp;
+        }        
+
+        /// <summary>
+        /// Crea Usuario
+        /// </summary>
+        /// <param name="usu"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route(nameof(AuthController.CrearUsuario))]
+        public ReturnResult<string> CrearUsuario(UsuarioNewDTO usu)
+        {
+            return _usuarioApp.CrearUsuario(usu);
         }
 
         /// <summary>
@@ -32,10 +46,7 @@ namespace CNRInnovaV1.Api.Controllers
         [AllowAnonymous]
         public ReturnResult<AutenticaDTO> Login(LoginDTO uss)
         {
-
             return _authApp.Login(uss);
         }
-
-
     }
 }

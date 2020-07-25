@@ -10,10 +10,13 @@ namespace CNRInnovaV1.Api.Dominio.Servicios
     public interface IUsuarioDom
     {
         ReturnResult<dynamic> ConsultarUsuarioByIdentificacion(int idTipoIdentificacion, string NumDoc);
-        ReturnResult<bool> CrearUsuario(UsuarioDTO usu);
+        ReturnResult<bool> CrearUsuario(UsuarioNewDTO usu);
+        ReturnResult<List<dynamic>> MenuUsuario(int usuarioId);
+
         ReturnResult<bool> ModificarUsuario(UsuarioDTO usu);
         ReturnResult<bool> CrearPassword(PasswordDTO pass);
         ReturnResult<bool> ModificarPassword(PasswordDTO pass);
+
 
     }
 }
